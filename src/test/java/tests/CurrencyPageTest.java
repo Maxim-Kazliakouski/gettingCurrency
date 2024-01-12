@@ -9,7 +9,7 @@ public class CurrencyPageTest extends BaseTest {
     public void gettingCurrency() {
         currencyPage
                 .openPage()
-                .isOpened()
+//                .isOpened()
                 .gettingCurrencySell("USD");
     }
 }

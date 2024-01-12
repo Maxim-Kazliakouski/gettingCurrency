@@ -60,6 +60,7 @@ test {
         in below mentioned code we print the parameters in Jenkins job...
         */
         println("-" * 50);
+        println("LAUNCH TYPE --> " + System.getProperty("launchType"))
         suites 'src/test/resources/UItests.xml'
         /*
         if there is necessity to launch in parallel for methods inside class
