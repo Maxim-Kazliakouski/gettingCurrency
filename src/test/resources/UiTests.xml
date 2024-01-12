@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--<suite name="UI Tests Gradle" parallel="classes" thread-count="3">-->
+<suite name="UI Tests Gradle">
+    <listeners>
+<!--        <listener class-name='tests.base.AnnotationTransformer'/>-->
+<!--        <listener class-name="tests.base.TestListener"/>-->
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+    <test name="UI tests">
+        <classes>
+            <class name="tests.CurrencyPageTest"/>
+        </classes>
+    </test>
+</suite>

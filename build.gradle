@@ -1,0 +1,76 @@
+plugins {
+    id 'java'
+    id "io.freefair.lombok" version "5.3.0"
+    id "io.qameta.allure" version "2.11.2"
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+description 'getting currency from Alfa-bank'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    testImplementation 'org.testng:testng:7.8.0'
+    testImplementation 'io.rest-assured:rest-assured:5.3.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+    implementation 'com.codeborne:selenide:6.12.3'
+    implementation 'io.qameta.allure:allure-selenide:2.24.0'
+    implementation 'io.qameta.allure:allure-testng:2.24.0'
+
+
+    testImplementation 'io.qameta.allure:allure-junit5:2.21.0'
+    testImplementation 'io.qameta.allure:allure-commandline:2.21.0'
+    testImplementation 'io.qameta.allure:allure-assertj:2.21.0'
+    testImplementation 'io.qameta.allure:allure-rest-assured:2.21.0'
+    testImplementation 'io.qameta.allure:allure-java-commons:2.21.0'
+    testImplementation 'com.github.romankh3:image-comparison:4.4.0'
+
+
+    implementation 'org.seleniumhq.selenium:selenium-java:4.11.0'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.2'
+    implementation 'io.github.bonigarcia:webdrivermanager:5.5.2'
+    implementation 'org.apache.maven.plugins:maven-surefire-plugin:3.1.2'
+    implementation 'io.qameta.allure:allure-maven:2.12.0'
+    implementation group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.7'
+    implementation 'org.json:json:20231013'
+}
+
+allure {
+    autoconfigure = true
+    aspectjweaver = true
+}
+
+test {
+//    dependsOn(updateConfigProperties)
+    clean
+    useTestNG {
+        /*
+        in below mentioned code we assigned system variables, which getting from the Jenkins
+        parametrized pipeline. And after getting values of these variables --> we used values
+        in our tests by 'System.getProperty' method
+        */
+        systemProperty 'launchType', System.getProperty("launchType")
+        /*
+        in below mentioned code we print the parameters in Jenkins job...
+        */
+        println("-" * 50);
+        suites 'src/test/resources/UItests.xml'
+        /*
+        if there is necessity to launch in parallel for methods inside class
+        */
+//        parallel 'methods'
+//        parallel 'classes'
+        threadCount 1
+    }
+    testLogging {
+        events "started", "passed", "skipped", "failed"
+//        exceptionFormat "full"
+//        showStandardStreams = true
+    }
+}
