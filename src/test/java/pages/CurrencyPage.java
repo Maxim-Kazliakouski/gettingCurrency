@@ -27,10 +27,19 @@ public class CurrencyPage extends BasePage {
         SelenideElement rateForecast = $x(format(RATE_FORECAST, currency)).shouldBe(Condition.visible);
         String forecastPositiveOrNegative = rateForecast.getAttribute("class");
         assert forecastPositiveOrNegative != null;
-        System.out.printf("%s ---> %s%n",currency, cur.getText());
+        String currencyText;
+        currencyText = cur.getText();
+        System.setProperty("currencyText", currencyText);
+        String forecast;
         if (forecastPositiveOrNegative.contains("positive")) {
+            forecast = (format("%s будет расти, не стоит покупать%n", currency));
             System.out.printf("%s будет расти, не стоит покупать%n", currency);
         }
-        else System.out.printf("%s будет падать, скоро можно будет покупать%n", currency);
+        else {
+            forecast = (format("%s будет падать, скоро можно будет покупать%n", currency));
+            System.out.printf("%s будет падать, скоро можно будет покупать%n", currency);
+        }
+        System.setProperty("FORECAST", forecast);
+        System.out.println("123 + " + System.getProperty("currencyText"));
     }
 }
