@@ -31,19 +31,18 @@ public class CurrencyPage extends BasePage {
         assert forecastPositiveOrNegative != null;
         String currencyText;
         currencyText = cur.getText();
-//        System.setProperty("currencyText", currencyText);
         String forecast;
         if (forecastPositiveOrNegative.contains("positive")) {
-            forecast = (format("%s будет расти, не стоит покупать%n", currency));
-            System.out.printf("%s будет расти, не стоит покупать%n", currency);
+            forecast = (format("%s will grow, not worth buying%n", currency));
+            System.out.printf("%s will grow, not worth buying%n", currency);
         }
         else {
-            forecast = (format("%s будет падать, скоро можно будет покупать%n", currency));
-            System.out.printf("%s будет падать, скоро можно будет покупать%n", currency);
+            forecast = (format("%s will fall, soon it will be possible to buy%n", currency));
+            System.out.printf("%s will fall, soon it will be possible to buy%n", currency);
         }
         try {
             FileWriter writer = new FileWriter("currency.txt");
-            writer.write(currency + " --> " + currencyText);
+            writer.write(currency + " --> " + currencyText + "\n");
             writer.write(forecast);
             writer.close();
             System.out.println("Запись в файл выполнена успешно.");
@@ -51,7 +50,5 @@ public class CurrencyPage extends BasePage {
             System.out.println("Ошибка при записи в файл.");
             e.printStackTrace();
         }
-//        System.setProperty("FORECAST", forecast);
-//        System.out.println("1234 + " + System.getProperty("currencyText"));
     }
 }
