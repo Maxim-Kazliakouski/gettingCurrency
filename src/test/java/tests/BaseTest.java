@@ -56,9 +56,6 @@ public class BaseTest implements ITestListener {
     String password;
     private String testCaseName;
 
-    public String getTestCaseName() {
-        return testCaseName;
-    }
 
     @BeforeSuite
     public void preconditionBeforeAllTests() {
