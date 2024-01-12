@@ -40,6 +40,6 @@ public class CurrencyPage extends BasePage {
             System.out.printf("%s будет падать, скоро можно будет покупать%n", currency);
         }
         System.setProperty("FORECAST", forecast);
-        System.out.println("123 + " + System.getProperty("currencyText"));
+        System.out.println("1234 + " + System.getProperty("currencyText"));
     }
 }
