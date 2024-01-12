@@ -51,12 +51,21 @@ pipeline {
                     }
                 }
             }
+        }
 
             // To run Maven on a Windows agent, use
             // bat "mvn -Dmaven.test.failure.ignore=true clean package"
-                environment {
-                    MY_PARAM = """${env.FORECAST}"""
-                }
+
+        stage('Read File') {
+            steps {
+                script {
+                    def fileContents = readFile('currency.txt')
+                        echo "Содержимое файла: ${fileContents}"
+               }
+           }
+        }
+
+        stage('Sending email...') {
             post {
                 always{
                     emailext to: "maxim.kazliakouski@gmail.com",
@@ -69,6 +78,7 @@ pipeline {
                 //success {
                 //    junit '**/target/surefire-reports/TEST-*.xml'
                 //}
+                }
             }
         }
     }
