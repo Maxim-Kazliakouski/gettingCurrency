@@ -66,6 +66,7 @@ pipeline {
         }
 
         stage('Sending email...') {
+        steps{
             post {
                 always{
                     emailext to: "maxim.kazliakouski@gmail.com",
@@ -82,3 +83,4 @@ pipeline {
             }
         }
     }
+}
