@@ -42,7 +42,7 @@ public class CurrencyPage extends BasePage {
         if (forecastPositiveOrNegative.contains("positive")) {
             forecast = (format("%s↑ will grow%n", currency));
         } else {
-            forecast = (format("%s ↓ will fall%n", currency));
+            forecast = (format("%s↓ will fall%n", currency));
         }
         try {
             FileWriter writer = new FileWriter("currency.txt", true);
