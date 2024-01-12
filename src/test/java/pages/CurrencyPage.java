@@ -5,7 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.SQLOutput;
 
 import static Constants.CurrencyPageLocators.*;
 import static com.codeborne.selenide.Selenide.$x;
@@ -24,26 +23,32 @@ public class CurrencyPage extends BasePage {
         return this;
     }
 
-    public void gettingCurrencySell(String currency) {
-        SelenideElement cur = $x(format(GETTING_CURRENCY_VALUE_SELL, currency)).shouldBe(Condition.visible);
-        SelenideElement rateForecast = $x(format(RATE_FORECAST, currency)).shouldBe(Condition.visible);
+    public void gettingCurrencySell(String currency, String action) {
+        SelenideElement rateForecast = null;
+        String cur = null;
+        if (action.equals("sell")) {
+            cur = $x(format(GETTING_CURRENCY_VALUE_SELL, currency)).shouldBe(Condition.visible).getText();
+            rateForecast = $x(format(RATE_FORECAST_SELL, currency)).shouldBe(Condition.visible);
+        } else if (action.equals("buy")) {
+            cur = $x(format(GETTING_CURRENCY_VALUE_BUY, currency)).shouldBe(Condition.visible).getText();
+            rateForecast = $x(format(RATE_FORECAST_BUY, currency)).shouldBe(Condition.visible);
+        }
+        assert rateForecast != null;
         String forecastPositiveOrNegative = rateForecast.getAttribute("class");
         assert forecastPositiveOrNegative != null;
         String currencyText;
-        currencyText = cur.getText();
+        currencyText = cur;
         String forecast;
         if (forecastPositiveOrNegative.contains("positive")) {
             forecast = (format("%s will grow, not worth buying%n", currency));
-            System.out.printf("%s will grow, not worth buying%n", currency);
-        }
-        else {
+        } else {
             forecast = (format("%s will fall, soon it will be possible to buy%n", currency));
-            System.out.printf("%s will fall, soon it will be possible to buy%n", currency);
         }
         try {
-            FileWriter writer = new FileWriter("currency.txt");
+            FileWriter writer = new FileWriter("currency.txt", true);
             writer.write(currency + " --> " + currencyText + "\n");
             writer.write(forecast);
+            writer.write("---------------------------------" + "\n");
             writer.close();
             System.out.println("Запись в файл выполнена успешно.");
         } catch (IOException e) {

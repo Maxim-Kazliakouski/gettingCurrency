@@ -1,15 +1,24 @@
 package tests;
 
 import io.qameta.allure.Description;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class CurrencyPageTest extends BaseTest {
-    @Test
+    @DataProvider(name = "testData")
+    public Object[][] testData() {
+        return new Object[][]{
+                {"USD", "sell"},
+                {"RUB", "buy"}
+        };
+    }
+
+    @Test(dataProvider = "testData")
     @Description("Test for getting currency")
-    public void gettingCurrency() {
+    public void gettingCurrency(String cur, String action) {
         currencyPage
                 .openPage()
 //                .isOpened()
-                .gettingCurrencySell("USD");
+                .gettingCurrencySell(cur, action);
     }
 }

@@ -63,6 +63,28 @@ public class BaseTest implements ITestListener {
     @BeforeSuite
     public void preconditionBeforeAllTests() {
         log.info("Start getting currency tests....");
+        try {
+            // Указываем путь к файлу, который необходимо очистить
+            String filePath = PropertyReader.getProperty("pathCurrencyTxt");
+
+            // Создаем новый файл с указанным путем
+            File file = new File(filePath);
+
+            // Проверяем, существует ли файл
+            if (file.exists()) {
+                // Открываем файл в режиме записи, перезаписывая его содержимое
+                FileWriter fileWriter = new FileWriter(file, false);
+
+                // Закрываем файл
+                fileWriter.close();
+
+                System.out.println("Файл успешно очищен.");
+            } else {
+                System.out.println("Файл не существует.");
+            }
+        } catch (IOException e) {
+            System.out.println("Ошибка при очистке файла: " + e.getMessage());
+        }
 //        //clearing folders before starting tests...
 //        switch (PropertyReader.getProperty("os")) {
 //            case ("windows"):

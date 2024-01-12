@@ -28,10 +28,10 @@ public class CurrencyPageSteps {
     }
 
     @Step("Getting currency")
-    public CurrencyPageSteps gettingCurrency(String currency) {
+    public CurrencyPageSteps gettingCurrency(String currency, String action) {
         log.info(format("Getting currency '%s'", currency));
         currencyPage
-                .gettingCurrencySell(currency);
+                .gettingCurrencySell(currency, action);
         return this;
     }
 }
