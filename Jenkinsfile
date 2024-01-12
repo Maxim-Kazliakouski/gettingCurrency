@@ -56,17 +56,21 @@ pipeline {
             // To run Maven on a Windows agent, use
             // bat "mvn -Dmaven.test.failure.ignore=true clean package"
 
-        stage('Read File') {
-            steps {
-                script {
-                    def fileContents = readFile('currency.txt')
-                        echo "Содержимое файла: ${fileContents}"
-               }
-           }
-        }
+        //stage('Reading file...') {
+        //    steps {
+        //        script {
+        //            def fileContents = readFile('currency.txt')
+        //                echo "Содержимое файла: ${fileContents}"
+        //       }
+        //   }
+        //}
 
         stage('Sending email...') {
             steps {
+                     script {
+                          def fileContents = readFile('currency.txt')
+                          //echo "Содержимое файла: ${fileContents}"
+                     }
                emailext to: "maxim.kazliakouski@gmail.com",
                subject: "Jenkins build === ${currentBuild.currentResult} === ${env.JOB_NAME}",
                 //body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info about build can be found here: ${env.BUILD_URL}.\nNEW FORECAST --> ${env.FORECAST}.\nNEW CURRENCY COURSE --> ${env.currencyText}"
