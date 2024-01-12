@@ -44,7 +44,7 @@ pipeline {
 
 
                             // Run Maven on a Unix agent.
-                            bat "mvn clean -DusernameChrome=$USERNAME -DpasswordChrome=$PASSWORD -DspecialitiesForAdding=$SPECIALITIES test"
+                            bat "gradle clean -DlaunchType=$LAUNCH_TYPE test"
                     } catch (Exception error)
                     {
                         unstable('Testing failed')
