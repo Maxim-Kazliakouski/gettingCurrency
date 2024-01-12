@@ -70,11 +70,12 @@ pipeline {
                      script {
                           def fileContents = readFile('currency.txt')
                           //echo "Содержимое файла: ${fileContents}"
+                          env.FILE_CONTENTS = fileContents
                      }
                emailext to: "maxim.kazliakouski@gmail.com",
                subject: "Jenkins build === ${currentBuild.currentResult} === ${env.JOB_NAME}",
                 //body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info about build can be found here: ${env.BUILD_URL}.\nNEW FORECAST --> ${env.FORECAST}.\nNEW CURRENCY COURSE --> ${env.currencyText}"
-                body: "${fileContents}"
+                body: "${env.FILE_CONTENTS}"
             }
                 // If Maven was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.
