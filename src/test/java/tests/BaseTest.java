@@ -26,6 +26,7 @@ import utils.PropertyReader;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Map;
@@ -81,9 +82,6 @@ public class BaseTest implements ITestListener {
 
     @BeforeMethod
     public void init(ITestResult result) {
-//        testCaseName = result.getMethod().getMethodName();
-//        username = System.getProperty("USERNAME", PropertyReader.getProperty("qase.username"));
-//        password = System.getProperty("PASSWORD", PropertyReader.getProperty("qase.password"));
         DesiredCapabilities capabilities = new DesiredCapabilities();
         // for local launching tests...
         switch (System.getProperty("launchType")) {
