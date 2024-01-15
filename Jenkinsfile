@@ -73,7 +73,8 @@ pipeline {
                           env.FILE_CONTENTS = fileContents
                      }
                emailext to: "maxim.kazliakouski@gmail.com",
-               subject: "Jenkins build === ${currentBuild.currentResult} === ${env.JOB_NAME}",
+               //subject: "Jenkins build === ${currentBuild.currentResult} === ${env.JOB_NAME}",
+               subject: "${env.JOB_NAME}",
                 //body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info about build can be found here: ${env.BUILD_URL}.\nNEW FORECAST --> ${env.FORECAST}.\nNEW CURRENCY COURSE --> ${env.currencyText}"
                 body: "${env.FILE_CONTENTS}"
             }
