@@ -44,29 +44,45 @@ pipeline {
 
 
                             // Run Maven on a Unix agent.
-                            bat "mvn clean -DusernameChrome=$USERNAME -DpasswordChrome=$PASSWORD -DspecialitiesForAdding=$SPECIALITIES test"
+                            bat "gradle clean -DlaunchType=$LAUNCH_TYPE test"
                     } catch (Exception error)
                     {
                         unstable('Testing failed')
                     }
                 }
             }
+        }
 
             // To run Maven on a Windows agent, use
             // bat "mvn -Dmaven.test.failure.ignore=true clean package"
 
-            post {
-                always{
-                    emailext to: "maxim.kazliakouski@gmail.com",
-                    subject: "Jenkins build === ${currentBuild.currentResult} === ${env.JOB_NAME}",
-                    body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info about build can be found here: ${env.BUILD_URL}.\n NEW TEXT --> ${env.FORECAST} "
-                }
+        //stage('Reading file...') {
+        //    steps {
+        //        script {
+        //            def fileContents = readFile('currency.txt')
+        //                echo "Содержимое файла: ${fileContents}"
+        //       }
+        //   }
+        //}
+
+        stage('Sending email...') {
+            steps {
+                     script {
+                          def fileContents = readFile('currency.txt')
+                          //echo "Содержимое файла: ${fileContents}"
+                          env.FILE_CONTENTS = fileContents
+                     }
+               emailext to: "maxim.kazliakouski@gmail.com",
+               //subject: "Jenkins build === ${currentBuild.currentResult} === ${env.JOB_NAME}",
+               subject: "${env.JOB_NAME}",
+                //body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info about build can be found here: ${env.BUILD_URL}.\nNEW FORECAST --> ${env.FORECAST}.\nNEW CURRENCY COURSE --> ${env.currencyText}"
+                body: "${env.FILE_CONTENTS}"
+            }
                 // If Maven was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.
-                success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                }
-            }
+                //success {
+                //    junit '**/target/surefire-reports/TEST-*.xml'
+                //}
         }
     }
 }

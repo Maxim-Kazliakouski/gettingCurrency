@@ -3,7 +3,8 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-import java.sql.SQLOutput;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import static Constants.CurrencyPageLocators.*;
 import static com.codeborne.selenide.Selenide.$x;
@@ -22,24 +23,37 @@ public class CurrencyPage extends BasePage {
         return this;
     }
 
-    public void gettingCurrencySell(String currency) {
-        SelenideElement cur = $x(format(GETTING_CURRENCY_VALUE_SELL, currency)).shouldBe(Condition.visible);
-        SelenideElement rateForecast = $x(format(RATE_FORECAST, currency)).shouldBe(Condition.visible);
+    public void gettingCurrencySell(String currency, String action) {
+        SelenideElement rateForecast = null;
+        String cur = null;
+        if (action.equals("sell")) {
+            cur = $x(format(GETTING_CURRENCY_VALUE_SELL, currency)).shouldBe(Condition.visible).getText();
+            rateForecast = $x(format(RATE_FORECAST_SELL, currency)).shouldBe(Condition.visible);
+        } else if (action.equals("buy")) {
+            cur = $x(format(GETTING_CURRENCY_VALUE_BUY, currency)).shouldBe(Condition.visible).getText();
+            rateForecast = $x(format(RATE_FORECAST_BUY, currency)).shouldBe(Condition.visible);
+        }
+        assert rateForecast != null;
         String forecastPositiveOrNegative = rateForecast.getAttribute("class");
         assert forecastPositiveOrNegative != null;
         String currencyText;
-        currencyText = cur.getText();
-        System.setProperty("currencyText", currencyText);
+        currencyText = cur;
         String forecast;
         if (forecastPositiveOrNegative.contains("positive")) {
-            forecast = (format("%s будет расти, не стоит покупать%n", currency));
-            System.out.printf("%s будет расти, не стоит покупать%n", currency);
+            forecast = (format("%s will grow%n", currency));
+        } else {
+            forecast = (format("%s will fall%n", currency));
         }
-        else {
-            forecast = (format("%s будет падать, скоро можно будет покупать%n", currency));
-            System.out.printf("%s будет падать, скоро можно будет покупать%n", currency);
+        try {
+            FileWriter writer = new FileWriter("currency.txt", true);
+            writer.write(currency + " --> " + currencyText + "\n");
+            writer.write(forecast);
+            writer.write("-------------------" + "\n");
+            writer.close();
+            System.out.println("Запись в файл выполнена успешно.");
+        } catch (IOException e) {
+            System.out.println("Ошибка при записи в файл.");
+            e.printStackTrace();
         }
-        System.setProperty("FORECAST", forecast);
-        System.out.println("123 + " + System.getProperty("currencyText"));
     }
 }
