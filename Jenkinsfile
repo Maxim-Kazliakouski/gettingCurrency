@@ -72,7 +72,8 @@ pipeline {
                      //     if [ ! -f "$FILE" ]; then
                      //        wget https://github.com/qa-guru/allure-notifications/releases/download/4.2.1/allure-notifications-4.2.1.jar
                      //     fi"
-                     bat 'java "-DconfigFile=notifications/config.json" -jar ../allure-notifications-4.6.1.jar'
+                     bat "curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d parse_mode=markdown -d text='${env.FILE_CONTENTS}'"
+                     //bat 'java "-DconfigFile=notifications/config.json" -jar ../allure-notifications-4.6.1.jar'
                      //     def fileContents = readFile('currency.txt')
                      //     //echo "Содержимое файла: ${fileContents}"
                      //     env.FILE_CONTENTS = fileContents
