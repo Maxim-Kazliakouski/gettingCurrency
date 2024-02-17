@@ -75,8 +75,9 @@ pipeline {
                      //bat 'java "-DconfigFile=notifications/config.json" -jar ../allure-notifications-4.6.1.jar'
                           def fileContents = readFile('currency.txt')
                           echo "File content: ${fileContents}"
-                          env.FILE_CONTENTS = fileContents
-                          bat "curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${fileContents}"
+                          String text = fileContents
+                          //env.FILE_CONTENTS = fileContents
+                          bat "curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text='${text}'"
 
                      }
                //emailext to: "maxim.kazliakouski@gmail.com",
