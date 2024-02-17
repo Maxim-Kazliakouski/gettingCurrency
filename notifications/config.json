@@ -1,0 +1,18 @@
+{
+  "base": {
+    "logo": "",
+    "project": "Getting currency",
+    "environment": "",
+    "comment": "",
+    "reportLink": "",
+    "language": "ru",
+    "allureFolder": "build/allure-results/",
+    "enableChart": true,
+    "durationFormat": "HH:mm:ss.SSS"
+  },
+  "telegram": {
+    "token": "6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs",
+    "chat": "968002806",
+    "replyTo": ""
+  }
+}
