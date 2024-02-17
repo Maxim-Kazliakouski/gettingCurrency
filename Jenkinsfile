@@ -76,7 +76,8 @@ pipeline {
                           def fileContents = readFile('currency.txt')
                           echo "File content: ${fileContents}"
                           env.FILE_CONTENTS = fileContents
-                          bat 'curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${env.FILE_CONTENTS}'
+                          bat "curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text='${env.FILE_CONTENTS}'"
+
                      }
                //emailext to: "maxim.kazliakouski@gmail.com",
                //!!!subject: "Jenkins build === ${currentBuild.currentResult} === ${env.JOB_NAME}",
