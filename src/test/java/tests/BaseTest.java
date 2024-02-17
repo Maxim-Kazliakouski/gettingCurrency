@@ -9,6 +9,7 @@ import com.github.romankh3.image.comparison.ImageComparison;
 import com.github.romankh3.image.comparison.ImageComparisonUtil;
 import com.github.romankh3.image.comparison.model.ImageComparisonResult;
 import com.github.romankh3.image.comparison.model.ImageComparisonState;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.log4j.Log4j2;
@@ -105,6 +106,7 @@ public class BaseTest implements ITestListener {
         // for local launching tests...
         switch (System.getProperty("launchType")) {
             case ("local"):
+                WebDriverManager.chromedriver().clearDriverCache().setup();
                 Configuration.baseUrl = System.getProperty("URL", PropertyReader.getProperty("base_url"));
                 Configuration.headless = Boolean.parseBoolean(PropertyReader.getProperty("headless"));
                 Configuration.timeout = 10000;
