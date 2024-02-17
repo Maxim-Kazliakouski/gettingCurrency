@@ -68,8 +68,7 @@ pipeline {
         stage('Sending email...') {
             steps {
                      script {
-                     bat "cd ..
-                          FILE=allure-notifications-4.2.1.jar
+                     bat "FILE=allure-notifications-4.2.1.jar
                           if [ ! -f "$FILE" ]; then
                              wget https://github.com/qa-guru/allure-notifications/releases/download/4.2.1/allure-notifications-4.2.1.jar
                           fi"
