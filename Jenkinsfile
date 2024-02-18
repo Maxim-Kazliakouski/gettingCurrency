@@ -80,7 +80,10 @@ pipeline {
                           //String text = fileContents
                           //env.FILE_CONTENTS = fileContents
                           echo "REQUEST: curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${fileContentsUSD}\n${fileContentsRUB}"
-                          bat "curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text='${fileContentsUSD}'\n'${fileContentsRUB}'"
+                          //bat "curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text='${fileContentsUSD}'\n'${fileContentsRUB}'"
+                          bat "curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text="${fileContentsUSD}
+                          ${fileContentsRUB}"
+
 
                      }
                //emailext to: "maxim.kazliakouski@gmail.com",
