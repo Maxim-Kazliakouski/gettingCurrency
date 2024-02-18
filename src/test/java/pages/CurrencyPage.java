@@ -40,9 +40,11 @@ public class CurrencyPage extends BasePage {
         currencyText = cur;
         String forecast;
         if (forecastPositiveOrNegative.contains("positive")) {
-            forecast = (format("%s will grow%n", currency));
+//            forecast = (format("%s will grow%n", currency));
+            forecast = (format("%s will grow", currency));
         } else {
-            forecast = (format("%s will fall%n", currency));
+//            forecast = (format("%s will fall%n", currency));
+            forecast = (format("%s will fall", currency));
         }
         try {
             FileWriter writer = new FileWriter("currency.txt", true);
