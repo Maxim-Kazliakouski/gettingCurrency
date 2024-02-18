@@ -47,12 +47,12 @@ public class CurrencyPage extends BasePage {
             forecast = (format("%s will fall", currency));
         }
         try {
-            FileWriter writer = new FileWriter("currency.txt", true);
+            FileWriter writer = new FileWriter("currency_" + currency + ".txt", true);
 //            writer.write("\"" + currency + " --> " + currencyText + forecast + "\"");
             writer.write(currency + " --> " + currencyText);
 //            writer.write(currency + "_" + currencyText);
             writer.write(forecast);
-            writer.write("-------------------" + "<br>");
+            writer.write("-------------------");
             writer.close();
             System.out.println("Запись в файл выполнена успешно.");
         } catch (IOException e) {

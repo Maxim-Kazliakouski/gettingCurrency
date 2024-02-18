@@ -63,22 +63,26 @@ public class BaseTest implements ITestListener {
         log.info("Start getting currency tests....");
         try {
             // Указываем путь к файлу, который необходимо очистить
-            String filePath = PropertyReader.getProperty("pathCurrencyTxt");
+            String filePathUSD = PropertyReader.getProperty("pathCurrencyTxtUSD");
+            String filePathRUR = PropertyReader.getProperty("pathCurrencyTxtRUR");
 
             // Создаем новый файл с указанным путем
-            File file = new File(filePath);
+            File fileUSD = new File(filePathUSD);
+            File fileRUR = new File(filePathRUR);
 
             // Проверяем, существует ли файл
-            if (file.exists()) {
+            if (fileUSD.exists() && fileRUR.exists()) {
                 // Открываем файл в режиме записи, перезаписывая его содержимое
-                FileWriter fileWriter = new FileWriter(file, false);
+                FileWriter fileWriterUSD = new FileWriter(fileUSD, false);
+                FileWriter fileWriterRUR = new FileWriter(fileRUR, false);
 
                 // Закрываем файл
-                fileWriter.close();
+                fileWriterUSD.close();
+                fileWriterRUR.close();
 
-                System.out.println("Файл успешно очищен.");
+                System.out.println("Файлы успешно очищен.");
             } else {
-                System.out.println("Файл не существует.");
+                System.out.println("Файлы не существуют.");
             }
         } catch (IOException e) {
             System.out.println("Ошибка при очистке файла: " + e.getMessage());
