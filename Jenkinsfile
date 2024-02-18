@@ -81,7 +81,7 @@ pipeline {
                           //def fileContents = '"' + readFile('currency_USD.txt') + "                                                                               " + readFile('currency_RUB.txt') + '"'
                           def lines = '-' * 35
                           def spaces = ' ' * 80
-                          def fileContents = '"' + lines + spaces + readFile('currency_USD.txt') + spaces + readFile('currency_RUB.txt') + spaces + lines + '"'
+                          def fileContents = '"' + readFile('currency_USD.txt') + spaces + readFile('currency_RUB.txt') + spaces + lines + '"'
                           //echo "File content: ${fileContents}"
                           //String text = fileContents
                           //env.FILE_CONTENTS = fileContents
