@@ -77,7 +77,7 @@ pipeline {
                           def fileContentsUSD = '"' + readFile('currency_USD.txt') + '"'
                           def fileContentsRUB = '"' + readFile('currency_RUB.txt') + '"'
                           //echo "File content: ${fileContents}"
-                          String text = fileContents
+                          //String text = fileContents
                           //env.FILE_CONTENTS = fileContents
                           echo "REQUEST: curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${fileContentsUSD}%0A${fileContentsRUB}"
                           bat "curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${fileContentsUSD}"
