@@ -64,21 +64,21 @@ public class BaseTest implements ITestListener {
         try {
             // Указываем путь к файлу, который необходимо очистить
             String filePathUSD = PropertyReader.getProperty("pathCurrencyTxtUSD");
-            String filePathRUR = PropertyReader.getProperty("pathCurrencyTxtRUR");
+            String filePathRUB = PropertyReader.getProperty("pathCurrencyTxtRUB");
 
             // Создаем новый файл с указанным путем
             File fileUSD = new File(filePathUSD);
-            File fileRUR = new File(filePathRUR);
+            File fileRUB = new File(filePathRUB);
 
             // Проверяем, существует ли файл
-            if (fileUSD.exists() && fileRUR.exists()) {
+            if (fileUSD.exists() && fileRUB.exists()) {
                 // Открываем файл в режиме записи, перезаписывая его содержимое
                 FileWriter fileWriterUSD = new FileWriter(fileUSD, false);
-                FileWriter fileWriterRUR = new FileWriter(fileRUR, false);
+                FileWriter fileWriterRUB = new FileWriter(fileRUB, false);
 
                 // Закрываем файл
                 fileWriterUSD.close();
-                fileWriterRUR.close();
+                fileWriterRUB.close();
 
                 System.out.println("Файлы успешно очищен.");
             } else {
