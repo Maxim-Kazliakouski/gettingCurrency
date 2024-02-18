@@ -73,7 +73,8 @@ pipeline {
                      //        wget https://github.com/qa-guru/allure-notifications/releases/download/4.2.1/allure-notifications-4.2.1.jar
                      //     fi"
                      //bat 'java "-DconfigFile=notifications/config.json" -jar ../allure-notifications-4.6.1.jar'
-                          def fileContents = readFile('currency.txt')
+                          //def fileContents = readFile('currency.txt')
+                          def fileContents = '"' + readFile('currency.txt') + '"'
                           echo "File content: ${fileContents}"
                           String text = fileContents
                           //env.FILE_CONTENTS = fileContents
