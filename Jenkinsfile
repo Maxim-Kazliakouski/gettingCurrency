@@ -74,10 +74,10 @@ pipeline {
                      //     fi"
                      //bat 'java "-DconfigFile=notifications/config.json" -jar ../allure-notifications-4.6.1.jar'
                           //def fileContents = readFile('currency.txt')
-//                           def fileContentsUSD = '"' + readFile('currency_USD.txt') + '"'
-//                           def fileContentsRUB = '"' + readFile('currency_RUB.txt') + '"'
-                          def fileContentsUSD = readFile('currency_USD.txt')
-                          def fileContentsRUB = readFile('currency_RUB.txt')
+                          def fileContentsUSD = '"' + readFile('currency_USD.txt') + '"'
+                          def fileContentsRUB = '"' + readFile('currency_RUB.txt') + '"'
+//                           def fileContentsUSD = readFile('currency_USD.txt')
+//                           def fileContentsRUB = readFile('currency_RUB.txt')
                           //echo "File content: ${fileContents}"
                           //String text = fileContents
                           //env.FILE_CONTENTS = fileContents
