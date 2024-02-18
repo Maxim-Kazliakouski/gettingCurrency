@@ -74,15 +74,12 @@ pipeline {
                      //     fi"
                      //bat 'java "-DconfigFile=notifications/config.json" -jar ../allure-notifications-4.6.1.jar'
                           //def fileContents = readFile('currency.txt')
-                          def fileContentsUSD = '"' + readFile('currency_USD.txt') + '"'
-                          def fileContentsRUR = '"' + readFile('currency_RUR.txt') + '"'
+                          def fileContents = '"' + readFile('currency.txt') + '"'
                           echo "File content: ${fileContents}"
                           String text = fileContents
                           //env.FILE_CONTENTS = fileContents
-                          echo "REQUEST: curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${fileContentsUSD}"
-                          echo "REQUEST: curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${fileContentsRUR}"
-                          bat "curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${fileContentsUSD}"
-                          bat "curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${fileContentsRUR}"
+                          echo "REQUEST: curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${fileContents}"
+                          bat "curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${fileContents}"
 
                      }
                //emailext to: "maxim.kazliakouski@gmail.com",
