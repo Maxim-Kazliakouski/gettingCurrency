@@ -23,7 +23,7 @@ public class CurrencyPage extends BasePage {
         return this;
     }
 
-    public CurrencyPage gettingCurrencySell(String currency, String action) {
+    public void gettingCurrencySell(String currency, String action) {
         SelenideElement rateForecast = null;
         String cur = null;
         if (action.equals("sell")) {
@@ -40,14 +40,17 @@ public class CurrencyPage extends BasePage {
         currencyText = cur;
         String forecast;
         if (forecastPositiveOrNegative.contains("positive")) {
-            forecast = (format("%s will grow%n", currency));
+//            forecast = (format("%s will grow%n", currency));
+            forecast = (format("%s will grow", currency));
         } else {
-            forecast = (format("%s will fall%n", currency));
+//            forecast = (format("%s will fall%n", currency));
+            forecast = (format("%s will fall", currency));
         }
         try {
-            FileWriter writer = new FileWriter("currency_" + currency + ".txt", true);
+            FileWriter writer = new FileWriter("currency.txt", true);
 //            writer.write("\"" + currency + " --> " + currencyText + forecast + "\"");
             writer.write(currency + " --> " + currencyText + forecast);
+//            writer.write(currency + "_" + currencyText);
 //            writer.write(forecast);
 //            writer.write("-------------------" + "\n");
             writer.close();
@@ -56,6 +59,5 @@ public class CurrencyPage extends BasePage {
             System.out.println("Ошибка при записи в файл.");
             e.printStackTrace();
         }
-        return this;
     }
 }
