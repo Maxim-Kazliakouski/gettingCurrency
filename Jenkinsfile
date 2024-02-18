@@ -74,13 +74,15 @@ pipeline {
                      //     fi"
                      //bat 'java "-DconfigFile=notifications/config.json" -jar ../allure-notifications-4.6.1.jar'
                           //def fileContents = readFile('currency.txt')
-                          def fileContentsUSD = '"' + readFile('currency_USD.txt') + '"'
-                          def fileContentsRUB = '"' + readFile('currency_RUB.txt') + '"'
+//                           def fileContentsUSD = '"' + readFile('currency_USD.txt') + '"'
+//                           def fileContentsRUB = '"' + readFile('currency_RUB.txt') + '"'
+                          def fileContentsUSD = readFile('currency_USD.txt')
+                          def fileContentsRUB = readFile('currency_RUB.txt')
                           //echo "File content: ${fileContents}"
                           //String text = fileContents
                           //env.FILE_CONTENTS = fileContents
                           echo "REQUEST: curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${fileContentsUSD}\n${fileContentsRUB}"
-                          bat "curl -X GET https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage?chat_id=968002806&text=${fileContentsUSD}%0A${fileContentsRUB}"
+                          bat "curl -s -X GET https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage?chat_id=968002806&text=${fileContentsUSD}%0A${fileContentsRUB}"
 //                           bat "curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${fileContentsUSD}"
 //                           bat "curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${fileContentsRUB}"
 
