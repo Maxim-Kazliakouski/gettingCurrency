@@ -51,7 +51,7 @@ public class CurrencyPage extends BasePage {
 //            writer.write("\"" + currency + " --> " + currencyText + forecast + "\"");
             writer.write(currency + " --> " + currencyText);
 //            writer.write(currency + "_" + currencyText);
-            writer.write(forecast + "         ");
+            writer.write(forecast + "                 ");
 //            writer.write("-------------------");
             writer.close();
             System.out.println("Запись в файл выполнена успешно.");
