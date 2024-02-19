@@ -34,13 +34,12 @@ pipeline {
                         // Get some code from a GitHub repository
                         git branch: "${params.BRANCH}",  url: 'https://github.com/Maxim-Kazliakouski/gettingCurrency.git'
 
-                        withCredentials ([
-                           string(credentialsId: 'chatID',
-                        variable: 'CHAT_ID'),
-                           string(
-                               credentialsId: 'telegramBotToken',
-                               variable: 'BOT_TOKEN')
-                        ])
+//                         withCredentials ([
+//                            string(credentialsId: 'chatID',
+//                         variable: 'CHAT_ID'),
+//                            string(credentialsId: 'telegramBotToken',
+//                                variable: 'BOT_TOKEN')
+//                         ])
 
 
                             // Run Maven on a Unix agent.
@@ -68,32 +67,35 @@ pipeline {
         stage('Sending email...') {
             steps {
                      script {
-                     //bat "FILE=allure-notifications-4.2.1.jar
-                     //     if [ ! -f "$FILE" ]; then
-                     //        wget https://github.com/qa-guru/allure-notifications/releases/download/4.2.1/allure-notifications-4.2.1.jar
-                     //     fi"
-                     //bat 'java "-DconfigFile=notifications/config.json" -jar ../allure-notifications-4.6.1.jar'
-                          //def fileContents = readFile('currency.txt')
-//                           def fileContentsUSD = '"' + readFile('currency_USD.txt') + '"'
-//                           def fileContentsRUB = '"' + readFile('currency_RUB.txt') + '"'
-                          def fileContentsUSD = readFile('currency_USD.txt')
-                          def fileContentsRUB = readFile('currency_RUB.txt')
-                          //def fileContents = '"' + readFile('currency_USD.txt') + "                                                                               " + readFile('currency_RUB.txt') + '"'
-                          def lines = '-' * 35
-                          def spaces = ' ' * 80
-                          def fileContents = '"' + readFile('currency_USD.txt') + spaces + readFile('currency_RUB.txt') + spaces + lines + '"'
-                          //echo "File content: ${fileContents}"
-                          //String text = fileContents
-                          //env.FILE_CONTENTS = fileContents
-                          String token = $BOT_TOKEN
-                          String chat_id = $CHAT_ID
-                          echo "REQUEST: curl -s -X POST https://api.telegram.org/bot${token}/sendMessage -d chat_id=${chat_id} -d text=${fileContentsUSD}      ${fileContentsRUB}"
-                          bat "curl -s -X POST https://api.telegram.org/bot${token}/sendMessage -d chat_id=${chat_id} -d text=${fileContents}"
+                                try {
+                                     withCredentials ([
+                                        string(credentialsId: 'chatID',
+                                        variable: 'CHAT_ID'),
+                                        string(credentialsId: 'telegramBotToken',
+                                        variable: 'BOT_TOKEN')
+                                        ])
+                                              {
 
-//                           bat "curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${fileContentsUSD}"
-//                           bat "curl -s -X POST https://api.telegram.org/bot6719433369:AAHn17_HLVBk23lvh42QkUBqvRh3ZEAGaDs/sendMessage -d chat_id=968002806 -d text=${fileContentsRUB}"
+                                                 // Run Maven on a Unix agent.
+                                              def fileContentsUSD = readFile('currency_USD.txt')
+                                              def fileContentsRUB = readFile('currency_RUB.txt')
+                                              def lines = '-' * 35
+                                              def spaces = ' ' * 80
+                                              def fileContents = '"' + readFile('currency_USD.txt') + spaces + readFile('currency_RUB.txt') + spaces + lines + '"'
+                                              echo "REQUEST: curl -s -X POST https://api.telegram.org/bot$BOT_TOKEN/sendMessage -d chat_id=$CHAT_ID -d text=${fileContentsUSD}      ${fileContentsRUB}"
+                                              bat "curl -s -X POST https://api.telegram.org/bot${token}/sendMessage -d chat_id=${chat_id} -d text=${fileContents}"
+                                             }
+                                         } catch (Exception error) {
+                                             unstable('Testing failed')
+                                         }
 
-
+//                           def fileContentsUSD = readFile('currency_USD.txt')
+//                           def fileContentsRUB = readFile('currency_RUB.txt')
+//                           def lines = '-' * 35
+//                           def spaces = ' ' * 80
+//                           def fileContents = '"' + readFile('currency_USD.txt') + spaces + readFile('currency_RUB.txt') + spaces + lines + '"'
+//                           echo "REQUEST: curl -s -X POST https://api.telegram.org/bot${token}/sendMessage -d chat_id=${chat_id} -d text=${fileContentsUSD}      ${fileContentsRUB}"
+//                           bat "curl -s -X POST https://api.telegram.org/bot${token}/sendMessage -d chat_id=${chat_id} -d text=${fileContents}"
                      }
                //emailext to: "maxim.kazliakouski@gmail.com",
                //!!!subject: "Jenkins build === ${currentBuild.currentResult} === ${env.JOB_NAME}",
