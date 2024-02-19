@@ -83,7 +83,7 @@ pipeline {
                                               def spaces = ' ' * 80
                                               def fileContents = '"' + readFile('currency_USD.txt') + spaces + readFile('currency_RUB.txt') + spaces + lines + '"'
                                               echo "REQUEST: curl -s -X POST https://api.telegram.org/bot$BOT_TOKEN/sendMessage -d chat_id=$CHAT_ID -d text=${fileContentsUSD}      ${fileContentsRUB}"
-                                              bat "curl -s -X POST https://api.telegram.org/bot${token}/sendMessage -d chat_id=${chat_id} -d text=${fileContents}"
+                                              bat "curl -s -X POST https://api.telegram.org/bot$BOT_TOKEN/sendMessage -d chat_id=$CHAT_ID -d text=${fileContents}"
                                              }
                                          } catch (Exception error) {
                                              unstable('Testing failed')
