@@ -9,6 +9,7 @@ import com.github.romankh3.image.comparison.ImageComparison;
 import com.github.romankh3.image.comparison.ImageComparisonUtil;
 import com.github.romankh3.image.comparison.model.ImageComparisonResult;
 import com.github.romankh3.image.comparison.model.ImageComparisonState;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.log4j.Log4j2;
@@ -62,22 +63,26 @@ public class BaseTest implements ITestListener {
         log.info("Start getting currency tests....");
         try {
             // Указываем путь к файлу, который необходимо очистить
-            String filePath = PropertyReader.getProperty("pathCurrencyTxt");
+            String filePathUSD = PropertyReader.getProperty("pathCurrencyTxtUSD");
+            String filePathRUB = PropertyReader.getProperty("pathCurrencyTxtRUB");
 
             // Создаем новый файл с указанным путем
-            File file = new File(filePath);
+            File fileUSD = new File(filePathUSD);
+            File fileRUB = new File(filePathRUB);
 
             // Проверяем, существует ли файл
-            if (file.exists()) {
+            if (fileUSD.exists() && fileRUB.exists()) {
                 // Открываем файл в режиме записи, перезаписывая его содержимое
-                FileWriter fileWriter = new FileWriter(file, false);
+                FileWriter fileWriterUSD = new FileWriter(fileUSD, false);
+                FileWriter fileWriterRUB = new FileWriter(fileRUB, false);
 
                 // Закрываем файл
-                fileWriter.close();
+                fileWriterUSD.close();
+                fileWriterRUB.close();
 
-                System.out.println("Файл успешно очищен.");
+                System.out.println("Файлы успешно очищен.");
             } else {
-                System.out.println("Файл не существует.");
+                System.out.println("Файлы не существуют.");
             }
         } catch (IOException e) {
             System.out.println("Ошибка при очистке файла: " + e.getMessage());
@@ -105,6 +110,7 @@ public class BaseTest implements ITestListener {
         // for local launching tests...
         switch (System.getProperty("launchType")) {
             case ("local"):
+                WebDriverManager.chromedriver().clearDriverCache().setup();
                 Configuration.baseUrl = System.getProperty("URL", PropertyReader.getProperty("base_url"));
                 Configuration.headless = Boolean.parseBoolean(PropertyReader.getProperty("headless"));
                 Configuration.timeout = 10000;

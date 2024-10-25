@@ -40,15 +40,20 @@ public class CurrencyPage extends BasePage {
         currencyText = cur;
         String forecast;
         if (forecastPositiveOrNegative.contains("positive")) {
-            forecast = (format("%s will grow%n", currency));
+//            forecast = (format("%s will grow%n", currency));
+            forecast = (format("%s will grow", currency));
         } else {
-            forecast = (format("%s will fall%n", currency));
+//            forecast = (format("%s will fall%n", currency));
+            forecast = (format("%s will fall", currency));
         }
         try {
-            FileWriter writer = new FileWriter("currency.txt", true);
-            writer.write(currency + " --> " + currencyText + "\n");
+            FileWriter writer = new FileWriter("currency_" + currency + ".txt", true);
+//            writer.write("\"" + currency + " --> " + currencyText + forecast + "\"");
+            writer.write(currency + " --> " + currencyText);
+//            writer.write(currency + "_" + currencyText);
+//            writer.write(forecast + "                 ");
             writer.write(forecast);
-            writer.write("-------------------" + "\n");
+//            writer.write("-------------------");
             writer.close();
             System.out.println("Запись в файл выполнена успешно.");
         } catch (IOException e) {
