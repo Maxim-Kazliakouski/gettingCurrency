@@ -47,7 +47,7 @@ pipeline {
                             bat "gradle clean -DlaunchType=$LAUNCH_TYPE test"
                     } catch (Exception error)
                     {
-                        unstable('Testing failed')
+                        unstable('Testing failed...')
                     }
                 }
             }
