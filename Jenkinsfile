@@ -32,7 +32,7 @@ pipeline {
                         // Get some code from a GitHub repository
                         git branch: "${params.BRANCH}",  url: 'https://github.com/Maxim-Kazliakouski/gettingCurrency.git'
                             // Run Maven on a Unix agent.
-//                             bat "gradle -v"
+                            bat 'echo Hello, World!'
                             bat "gradle clean -DlaunchType=$LAUNCH_TYPE test"
                     } catch (Exception error)
                     {
