@@ -33,8 +33,8 @@ pipeline {
                         git branch: "${params.BRANCH}",  url: 'https://github.com/Maxim-Kazliakouski/gettingCurrency.git'
                             // Run Maven on a Unix agent.
                             bat 'echo Hello, World!'
-                            bat 'gradle -v'
-                            bat "gradle clean -DlaunchType=$LAUNCH_TYPE test"
+//                             bat 'gradle -v'
+                            bat 'gradle clean -DlaunchType=$LAUNCH_TYPE test'
                     } catch (Exception error)
                     {
                         unstable('Testing failed...')
