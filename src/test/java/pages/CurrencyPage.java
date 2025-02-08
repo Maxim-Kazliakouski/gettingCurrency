@@ -14,7 +14,7 @@ import static java.lang.String.format;
 public class CurrencyPage extends BasePage {
 
     public CurrencyPage openPage() {
-        open("/exchange/digital");
+        open("https://www.alfabank.by/exchange/digital");
         return this;
     }
 
