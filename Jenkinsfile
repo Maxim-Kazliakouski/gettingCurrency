@@ -34,7 +34,7 @@ pipeline {
                             // Run Maven on a Unix agent.
                             bat 'echo Hello, World!'
                             bat  'C:\\gradle-8.12.1-all\\gradle.bat -v'
-                            bat 'gradle clean -DlaunchType=$LAUNCH_TYPE test'
+                            bat 'gradle.bat clean -DlaunchType=$LAUNCH_TYPE test'
                     } catch (Exception error)
                     {
                         unstable('Testing failed...')
