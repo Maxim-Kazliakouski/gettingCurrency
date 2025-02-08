@@ -35,7 +35,7 @@ pipeline {
                             bat 'echo %PATH%'
 //                             bat  'C:\\gradle-8.12.1-all\\gradle.bat -v'
 //                             bat 'gradlew.bat -v'
-                            bat 'gradle clean -DlaunchType=$LAUNCH_TYPE test'
+                            bat 'gradle clean -DlaunchType=$LAUNCH_TYPE test --debug'
                     } catch (Exception error)
                     {
                         unstable('Testing failed...')
@@ -49,7 +49,7 @@ pipeline {
                      script {
                                 try {
                                 /*
-                                withCredentials need to use exactly in step, where you wnat to
+                                withCredentials need to use exactly in step, where you want to
                                 use variables from secure Jenkins
                                 */
                                      withCredentials ([
