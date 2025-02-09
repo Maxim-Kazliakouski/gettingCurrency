@@ -48,7 +48,7 @@ public class CurrencyPage extends BasePage {
         try {
             FileWriter writer = new FileWriter("currency_" + currency + ".txt", true);
 //            writer.write("\"" + currency + " --> " + currencyText + forecast + "\"");
-            writer.write(currency + " --> " + currencyText);
+            writer.write("THE BEST " + action.toUpperCase() + " OF " + currency + " --> " + currencyText);
 //            writer.write(currency + "_" + currencyText);
 //            writer.write(forecast + "                 ");
 //            writer.write(forecast);
