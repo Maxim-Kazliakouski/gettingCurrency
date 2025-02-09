@@ -52,7 +52,7 @@ public class CurrencyPage extends BasePage {
 //            writer.write(currency + "_" + currencyText);
             writer.write("                                    ");
 //            writer.write(forecast);
-            writer.write("-------------------");
+//            writer.write("-------------------");
             writer.close();
             System.out.println("Запись в файл выполнена успешно.");
         } catch (IOException e) {

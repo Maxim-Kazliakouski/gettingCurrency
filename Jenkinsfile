@@ -65,7 +65,7 @@ pipeline {
                                           def lines = '-' * 35
                                           def spaces = ' ' * 80
 //                                           def fileContents = '"' + readFile('currency_EUR.txt') + spaces + readFile('currency_RUB.txt') + spaces + lines + '"'
-                                          def fileContents = '"' + readFile('currency_EUR.txt') +'"'
+                                          def fileContents = '"' + readFile('currency_EUR.txt') + lines + '"'
                                           //echo "REQUEST: curl -s -X POST https://api.telegram.org/bot$BOT_TOKEN/sendMessage -d chat_id=$CHAT_ID -d text=${fileContentsUSD}      ${fileContentsRUB}"
                                           bat "curl -s -X POST https://api.telegram.org/bot$BOT_TOKEN/sendMessage -d chat_id=$CHAT_ID -d text=${fileContents}"
                                           }
