@@ -50,7 +50,7 @@ public class CurrencyPage extends BasePage {
 //            writer.write("\"" + currency + " --> " + currencyText + forecast + "\"");
             writer.write("THE BEST " + action.toUpperCase() + " OF " + currency + " --> " + currencyText);
 //            writer.write(currency + "_" + currencyText);
-//            writer.write(forecast + "                 ");
+            writer.write("                 ");
 //            writer.write(forecast);
 //            writer.write("-------------------");
             writer.close();
