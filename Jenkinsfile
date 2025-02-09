@@ -62,7 +62,7 @@ pipeline {
                                           // Run Maven on a Unix agent.
                                           def fileContentsUSD = readFile('currency_USD.txt')
                                           def fileContentsRUB = readFile('currency_RUB.txt')
-                                          def lines = '-' * 35
+                                          def lines = '-' * 45
                                           def spaces = ' ' * 80
 //                                           def fileContents = '"' + readFile('currency_EUR.txt') + spaces + readFile('currency_RUB.txt') + spaces + lines + '"'
                                           def fileContents = '"' + readFile('currency_EUR.txt') + lines + '"'
