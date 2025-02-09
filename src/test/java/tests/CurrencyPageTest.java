@@ -8,8 +8,8 @@ public class CurrencyPageTest extends BaseTest {
     @DataProvider(name = "testData")
     public Object[][] testData() {
         return new Object[][]{
-                {"USD", "sell"},
-                {"RUB", "buy"}
+                {"EUR", "sell"},
+                {"EUR", "buy"}
         };
     }
 
