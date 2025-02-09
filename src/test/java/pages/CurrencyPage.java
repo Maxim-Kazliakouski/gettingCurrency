@@ -7,8 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import static Constants.CurrencyPageLocators.*;
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
 
 public class CurrencyPage extends BasePage {
@@ -28,9 +27,11 @@ public class CurrencyPage extends BasePage {
         String cur = null;
         if (action.equals("sell")) {
             cur = $x(format(GETTING_CURRENCY_VALUE_SELL, currency)).shouldBe(Condition.visible).getText();
+            System.out.println("SELL -> " + cur);
 //            rateForecast = $x(format(RATE_FORECAST_SELL, currency)).shouldBe(Condition.visible);
         } else if (action.equals("buy")) {
             cur = $x(format(GETTING_CURRENCY_VALUE_BUY, currency)).shouldBe(Condition.visible).getText();
+            System.out.println("BUY -> " + cur);
 //            rateForecast = $x(format(RATE_FORECAST_BUY, currency)).shouldBe(Condition.visible);
         }
 //        assert rateForecast != null;
