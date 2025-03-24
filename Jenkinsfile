@@ -32,10 +32,10 @@ pipeline {
                         // Get some code from a GitHub repository
                         git branch: "${params.BRANCH}",  url: 'https://github.com/Maxim-Kazliakouski/gettingCurrency.git'
                             // Run Maven on a Unix agent.
-                            bat 'echo %PATH%'
+                            bat 'echo %$LAUNCH_TYPE%'
 //                             bat  'C:\\gradle-8.12.1-all\\gradle.bat -v'
 //                             bat 'gradlew.bat -v'
-                            bat 'gradle clean -DlaunchType=$LAUNCH_TYPE test --quiet'
+                            bat 'gradle clean -DlaunchType=local test --quiet'
                     } catch (Exception error)
                     {
                         unstable('Testing failed...')
