@@ -38,7 +38,7 @@ pipeline {
 //                             bat 'echo %PATH%'
 //                             bat  'C:\\gradle-8.12.1-all\\gradle.bat -v'
 //                             bat 'gradlew.bat -v'
-                            bat 'gradle clean -DlaunchType=%LAUNCH_TYPE% test --info'
+                            bat 'gradle clean -DlaunchType=%LAUNCH_TYPE% test --quiet'
                     } catch (Exception error)
                     {
                         unstable('Testing failed...')
