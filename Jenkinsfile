@@ -21,6 +21,12 @@ pipeline {
         type: 'PT_BRANCH' )
     }
 
+            string(
+                name: 'LAUNCH_TYPE',
+                defaultValue: 'remote',
+                description: 'Тип запуска тестов (remote/local)'
+            )
+
     stages {
 
         stage('Performing tests...') {
@@ -37,7 +43,7 @@ pipeline {
 //                             bat 'echo %PATH%'
 //                             bat  'C:\\gradle-8.12.1-all\\gradle.bat -v'
 //                             bat 'gradlew.bat -v'
-                            bat 'gradle clean -DlaunchType=$LAUNCH_TYPE test --quiet'
+                            bat 'gradle clean -DlaunchType=${params.LAUNCH_TYPE} test --quiet'
                     } catch (Exception error)
                     {
                         unstable('Testing failed...')
