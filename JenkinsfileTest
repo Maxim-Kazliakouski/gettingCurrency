@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Test Telegram') {
+            steps {
+                script {
+                    withCredentials([
+                        string(credentialsId: 'CHAT_ID', variable: 'CHAT_ID'),
+                        string(credentialsId: 'BOT_TOKEN', variable: 'BOT_TOKEN')
+                    ]) {
+                        bat "echo Testing Telegram connection..."
+                        bat "curl -s -X POST https://api.telegram.org/bot%BOT_TOKEN%/getMe"
+                    }
+                }
+            }
+        }
+    }
+}
