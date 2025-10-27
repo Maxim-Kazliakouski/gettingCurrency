@@ -19,13 +19,14 @@ pipeline {
         sortMode: 'NONE',
         tagFilter: '*',
         type: 'PT_BRANCH' )
+
+    string(
+       name: 'LAUNCH_TYPE',
+       defaultValue: 'remote',
+       description: 'Тип запуска тестов (remote/local)'
+        )
     }
 
-            string(
-                name: 'LAUNCH_TYPE',
-                defaultValue: 'remote',
-                description: 'Тип запуска тестов (remote/local)'
-            )
 
     stages {
 
