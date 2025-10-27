@@ -4,6 +4,8 @@ pipeline {
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "M2"
+        // The naming should be coincide with naming from Jenkins/Settings/Tools
+        gradle "Gradle_Jenkins"
     }
 
     parameters {
