@@ -62,16 +62,24 @@ pipeline {
                                         variable: 'BOT_TOKEN')
                                      ])
                                           {
+
+                                           echo "Testing simple message..."
+                                // Простое текстовое сообщение
+                                bat "curl -s -X POST https://api.telegram.org/bot%BOT_TOKEN%/sendMessage -d chat_id=%CHAT_ID% -d text=\"Hello from Jenkins\""
+
+                                // Альтернативный формат
+                                bat "curl -s -X POST https://api.telegram.org/bot%BOT_TOKEN%/sendMessage -d chat_id=%CHAT_ID% -d text=HelloFromJenkins"
+                                }
+
+
                                           // Run Maven on a Unix agent.
-                                          def fileContentsUSD = readFile('currency_USD.txt')
-                                          def fileContentsRUB = readFile('currency_RUB.txt')
-                                          def lines = '-' * 45
-                                          def spaces = ' ' * 80
-//                                           def fileContents = '"' + readFile('currency_EUR.txt') + spaces + readFile('currency_RUB.txt') + spaces + lines + '"'
-                                          def fileContents = '"' + readFile('currency_EUR.txt') + lines + '"'
-                                          //echo "REQUEST: curl -s -X POST https://api.telegram.org/bot$BOT_TOKEN/sendMessage -d chat_id=$CHAT_ID -d text=${fileContentsUSD}      ${fileContentsRUB}"
-                                          bat "curl -s -X POST https://api.telegram.org/bot$BOT_TOKEN/sendMessage -d chat_id=$CHAT_ID -d text=${fileContents}"
-                                          }
+//                                           def fileContentsUSD = readFile('currency_USD.txt')
+//                                           def fileContentsRUB = readFile('currency_RUB.txt')
+//                                           def lines = '-' * 45
+//                                           def spaces = ' ' * 80
+//                                           def fileContents = '"' + readFile('currency_EUR.txt') + lines + '"'
+//                                           bat "curl -s -X POST https://api.telegram.org/bot$BOT_TOKEN/sendMessage -d chat_id=$CHAT_ID -d text=${fileContents}"
+//                                           }
                                 }
                                 catch (Exception error) {
                                 unstable('Testing failed')
