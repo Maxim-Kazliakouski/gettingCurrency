@@ -33,6 +33,9 @@ pipeline {
                         // Get code from GitHub repository
                         git branch: "${params.BRANCH}", url: 'https://github.com/Maxim-Kazliakouski/gettingCurrency.git'
 
+                        // Make gradlew executable
+                        sh 'chmod +x ./gradlew'
+
                         // For Unix/macOS agents
                         sh '''
                             echo "PATH: $PATH"
