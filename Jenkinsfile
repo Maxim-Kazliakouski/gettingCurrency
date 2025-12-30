@@ -44,7 +44,7 @@ pipeline {
                         '''
 
                         // Run tests with gradlew (wrapper)
-                        sh './gradlew clean test --quiet -DlaunchType=$LAUNCH_TYPE'
+                        sh 'gradle clean test --quiet -DlaunchType=$LAUNCH_TYPE'
 
                         // If gradlew doesn't work, try with system gradle
                         // sh 'gradle clean test --quiet -DlaunchType=$LAUNCH_TYPE'
