@@ -72,7 +72,7 @@ pipeline {
                             def fileContentsUSD = readFile('currency_USD.txt').trim()
                             def fileContentsRUB = readFile('currency_RUB.txt').trim()
                             def fileContentsEUR = readFile('currency_EUR.txt').trim()
-                            def lines = '-' * 30
+                            def lines = '-' * 26
 
                             // Prepare message - different formats to try
                             def message1 = "${fileContentsEUR}\n${lines}\n${fileContentsUSD}\n${fileContentsRUB}"
