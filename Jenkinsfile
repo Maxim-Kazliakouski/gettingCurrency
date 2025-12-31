@@ -80,38 +80,12 @@ pipeline {
 
                             // Try different approaches for curl
                             echo "Sending Telegram message..."
-
-//                             // Approach 1: Using heredoc (most reliable)
-//                             sh '''
-//                                 cat << EOF > /tmp/telegram_message.txt
-//                                 ${fileContentsEUR}
-//                                 ${lines}
-//                                 ${fileContentsUSD}
-//                                 ${fileContentsRUB}
-//                                 EOF
-//
-//                                 MESSAGE_TEXT=$(cat /tmp/telegram_message.txt | jq -sRr @uri)
-//                                 curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
-//                                      -d "chat_id=$CHAT_ID" \
-//                                      -d "text=$MESSAGE_TEXT" \
-//                                      -d "parse_mode=HTML"
-//                             '''
-
-                            // Alternative approach 2: Direct command
                             sh """
                                 curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \\
                                      -d chat_id="$CHAT_ID" \\
                                      -d text="${fileContentsEUR}%0A${lines}%0A${fileContentsUSD}%0A${fileContentsRUB}" \\
                                      -d parse_mode="HTML"
                             """
-
-                            // Alternative approach 3: Using environment variables
-                            // sh '''
-                            //     curl -s -X POST "https://api.telegram.org/bot$BOT_TOKEN/sendMessage" \
-                            //          -d chat_id="$CHAT_ID" \
-                            //          -d text="$TELEGRAM_MESSAGE" \
-                            //          -d parse_mode="HTML"
-                            // '''
                         }
                     } catch (Exception error) {
                         echo "Failed to send Telegram message: ${error}"
