@@ -65,7 +65,7 @@ pipeline {
                         }
                     try {
                         withCredentials ([
-                            string(credentialsId: 'nonexistent', variable: 'TEST')]) {echo "test"}
+                            string(credentialsId: 'nonexistent', variable: 'TEST'),
                             string(credentialsId: 'chatID', variable: 'CHAT_ID'),
                             string(credentialsId: 'telegramBotToken', variable: 'BOT_TOKEN')
                         ]) {
