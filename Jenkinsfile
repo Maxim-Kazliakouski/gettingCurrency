@@ -59,6 +59,10 @@ pipeline {
         stage('Sending message via Telegram...') {
             steps {
                 script {
+                echo "Checking credentials access..."
+                        withCredentials([string(credentialsId: 'chatID', variable: 'TEST_VAR')]) {
+                            echo "Found chatID = [${TEST_VAR.take(4)}...]" // Покажет первые 4 символа
+                        }
                     try {
                         withCredentials ([
                             string(credentialsId: 'chatID', variable: 'CHAT_ID'),
